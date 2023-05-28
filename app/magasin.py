@@ -1,5 +1,6 @@
 from pydantic import BaseModel
 from fonctions import verifier_type
+from musique import * 
 
 class Magasin(BaseModel):
     type_musique : str
@@ -31,14 +32,3 @@ class Magasin(BaseModel):
     def retirer_dvds(self, musique):
         self.dvds.remove(musique)
 
-    
-    @validator("type_musique")
-    def type_is_valid(cls, v, values):
-        vinyles = values["vinyles"]
-        dvds = values["dvds"]
-
-
-        for i in len(range(vinyles)):
-            if verifier_type(v, vinyles[i].immatriculation)==False:
-                raise ValueError('Musique non conforme au type du magasin détectée')
-            

@@ -7,10 +7,6 @@ class Musique(BaseModel):
     immatriculation : str 
 
 
-    
-    
-
-
     @validator("immatriculation")
     def is_valid(cls, v, values):
 
@@ -51,7 +47,4 @@ class Musique(BaseModel):
         return v
 
 
-''' Petit test '''
-    
-#m = Musique(titre = 'titre', artiste = 'John Doe', immatriculation = 'JD/250/POP/1234')
 
