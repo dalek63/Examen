@@ -128,3 +128,68 @@ def delete_magasin(id: str):
         return {"message": "Magasin not found"}
 
 
+#Ajout dans la liste de vinyles 
+
+
+
+@app.put("/magasins/{id}/vinyles/{immatriculation:path}")
+async def add_musique_to_vinyles_magasins(id: str, immatriculation :str):
+    res = magasins.find_one({"_id": ObjectId(id)})
+    res2 = titres.find_one({"immatriculation": immatriculation})
+
+    if res and res2:
+        
+        magasins.update_one({"_id": ObjectId(id)}, { "$push": { "vinyles" : dict(Musique(**res2)) }})
+
+        return dict(Magasin(**res))
+    else:
+        return {"message": "Magasin not found or Musique not found "}
+
+#Ajout dans la liste de dvds
+
+
+@app.put("/magasins/{id}/dvds/{immatriculation:path}")
+async def add_musique_to_dvds_magasins(id: str, immatriculation :str):
+    res = magasins.find_one({"_id": ObjectId(id)})
+    res2 = titres.find_one({"immatriculation": immatriculation})
+
+    if res and res2:
+        
+        magasins.update_one({"_id": ObjectId(id)}, { "$push": { "dvds" : dict(Musique(**res2)) }})
+
+        return dict(Magasin(**res))
+    else:
+        return {"message": "Magasin not found or Musique not found "}
+
+
+#Retirer de la liste de dvds
+
+
+@app.put("/magasins/{id}/remove-dvds/{immatriculation:path}")
+async def remove_musique_from_dvds_magasins(id: str, immatriculation :str):
+    res = magasins.find_one({"_id": ObjectId(id)})
+    res2 = titres.find_one({"immatriculation": immatriculation})
+
+    if res and res2:
+        
+        magasins.update_one({"_id": ObjectId(id)}, { "$pull": { "dvds" : dict(Musique(**res2)) }})
+
+        return dict(Magasin(**res))
+    else:
+        return {"message": "Magasin not found or Musique not found "}
+
+
+#Retirer de la liste de vinyles
+
+@app.put("/magasins/{id}/remove-vinyles/{immatriculation:path}")
+async def remove_musique_from_vinyles_magasins(id: str, immatriculation :str):
+    res = magasins.find_one({"_id": ObjectId(id)})
+    res2 = titres.find_one({"immatriculation": immatriculation})
+
+    if res and res2:
+        
+        magasins.update_one({"_id": ObjectId(id)}, { "$pull": { "vinyles" : dict(Musique(**res2)) }})
+
+        return dict(Magasin(**res))
+    else:
+        return {"message": "Magasin not found or Musique not found "}
