@@ -12,3 +12,7 @@ def verifier_type(type, musique):
     else :
         res = False
     return res
+
+
+
+
