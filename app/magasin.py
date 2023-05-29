@@ -32,3 +32,6 @@ class Magasin(BaseModel):
     def retirer_dvds(self, musique):
         self.dvds.remove(musique)
 
+m = Magasin(type_musique = "POP")
+
+print(m.vinyles)
