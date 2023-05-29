@@ -12,28 +12,22 @@ Musiques = client[db]
 titres = Musiques[collection]
 magasins = Musiques[collection2]
 
-musique = Musique (titre = 'titre', artiste = 'John Doe', immatriculation = 'JD/250/POP/1234')
+
+titres_peuple = [
+        {"titre":"titre","artiste":"John Doe","immatriculation":"JD/250/POP/1234"},
+        {"titre":"anus","artiste":"Younes Assaouci","immatriculation":"YA/250/RAP/1235"},
+        {"titre":"dans la street","artiste":"Alexandre Wolak","immatriculation":"AW/250/RAP/1236"},
+        {"titre":"Souleymane","artiste":"Souleymane Siby","immatriculation":"SS/230/POP/6789"}
+]
 
 
-mu = {
-        "titre" : musique.titre,
-        "artiste" : musique.artiste,
-        "immatriculation" : musique.immatriculation
-}
-
-res = titres.insert_one(mu)
-
-magasin = Magasin(type_musique = "POP")
-'''
-ma = {
-        "type_musique" : magasin.type_musique,
-        "vinyles" : magasin.vinyles,
-        "dvds" : magasin.dvds
-}
-
-res = magasins.insert_one(ma)
+magasins_peuples = [
+        {"type_musique":"POP","vinyles":[],"dvds":[]},
+        {"type_musique":"RAP","vinyles":[],"dvds":[]},
+        {"type_musique":"RNB","vinyles":[],"dvds":[]}
+]
 
 
-'''
+titres.insert_many(titres_peuple)
 
-#magasins.update_one({"_id" : ObjectId('64749321d1a7b261369671b1')}, { "$push": { "vinyles" : mu }})
+magasins.insert_many(magasins_peuples)
