@@ -193,3 +193,4 @@ async def remove_musique_from_vinyles_magasins(id: str, immatriculation :str):
         return dict(Magasin(**res))
     else:
         return {"message": "Magasin not found or Musique not found "}
+

@@ -1,5 +1,5 @@
 
-connect = 'mongodb+srv://dalek63:bayati@technolog.ec8jwtk.mongodb.net/'
+connect = 'mongodb'
 
 db = 'Musique'
 
